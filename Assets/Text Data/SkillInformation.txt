@@ -1,0 +1,4 @@
+Quick Attack
+The next 3 attacks you perform have a 30% attack speed bonus and a 10% damage bonus
+Parry
+You assume a defensive stance, You take 80% less damage from the next attack.

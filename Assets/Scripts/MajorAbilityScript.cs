@@ -16,7 +16,7 @@ public class MajorAbilityScript : MonoBehaviour
     private string skillDescription;
     private Color[] lineColors;
 
-    public void StartMajorAbilityScript(LineRenderer lineGen, Color[] lineColors)
+    public void StartMajorAbilityScript(LineRenderer lineGen, Color[] lineColors, string name, string description)
     {
         lineGenerator = lineGen;
         this.lineColors = lineColors;
@@ -24,6 +24,8 @@ public class MajorAbilityScript : MonoBehaviour
         allLines = new LineRenderer[(nextAbilities.Length + minorAbilties.Length)];
         initialDrawToNextAbilties();
         initialDrawToMinorAbilities();
+        skillName = name;
+        skillDescription = description;
     }
     public bool getAbilityActive()
     {
@@ -188,10 +190,12 @@ public class MajorAbilityScript : MonoBehaviour
     private void OnMouseEnter()
     {
         animator.SetBool("isMouseOver", true);
+        GetComponentInParent<SkillTreeManagerScript>().hoverOverAbility(skillName, skillDescription);
     }
     private void OnMouseExit()
     {
         animator.SetBool("isMouseOver", false);
+        GetComponentInParent<SkillTreeManagerScript>().exitOverAbility();
     }
     public void resetSkill()
     {
