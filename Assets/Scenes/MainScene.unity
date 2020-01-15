@@ -14926,7 +14926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -35817,7 +35817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -35835,7 +35835,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Start Text
 --- !u!222 &1604248115
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -45476,7 +45476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -45494,7 +45494,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Start Text
 --- !u!222 &1774028600
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -50411,6 +50411,9 @@ MonoBehaviour:
   - {r: 1, g: 0.098039225, b: 0.098039225, a: 0}
   skillInformation: {fileID: 4900000, guid: 0327088b13ca952489e7fa99c72057ea, type: 3}
   textBoxArea: {fileID: 1587445318}
+  fadeInSpeed: 0.05
+  fadeOutSpeed: 0.02
+  maxAlpha: 0.5
 --- !u!1 &2051492451
 GameObject:
   m_ObjectHideFlags: 0

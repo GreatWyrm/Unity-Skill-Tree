@@ -9,15 +9,27 @@ public class SkillTreeManagerScript : MonoBehaviour
     public Color[] lineColors;
     public TextAsset skillInformation;
     private string[] skillData;
+
+    // Variables relating to the text box that displays the skills name and description
     public Canvas textBoxArea;
-    private Text[] skillTextBox;
+    private Text[] skillTextBoxes;
+    private bool isFadingIn;
+    private bool isFadingOut;
+    [SerializeField]
+    float fadeInSpeed;
+    [SerializeField]
+    float fadeOutSpeed;
+    [SerializeField]
+    float maxAlpha;
+    private float textFadeInSpeed;
+    private float textFadeOutSpeed;
+
 
     void Awake()
     {
-        textBoxArea.enabled = false;
-        skillTextBox = textBoxArea.GetComponentsInChildren<Text>();
-        skillTextBox[0].text = "";
-        skillTextBox[1].text = "";
+        skillTextBoxes = textBoxArea.GetComponentsInChildren<Text>();
+        textFadeInSpeed = fadeInSpeed / maxAlpha;
+        textFadeOutSpeed = fadeOutSpeed / maxAlpha;
         skillData = new string[majorAbilites.Length * 2];
         if(skillInformation != null)
         {
@@ -45,14 +57,60 @@ public class SkillTreeManagerScript : MonoBehaviour
     }
     public void hoverOverAbility(string skillName, string skillDescription)
     {
-        textBoxArea.enabled = true;
-        skillTextBox[0].text = skillName;
-        skillTextBox[1].text = skillDescription;
+        isFadingIn = true;
+        isFadingOut = false;
+        skillTextBoxes[0].text = skillName;
+        skillTextBoxes[1].text = skillDescription;
+        
     }
     public void exitOverAbility()
     {
-        textBoxArea.enabled = false;
-        skillTextBox[0].text = "";
-        skillTextBox[1].text = "";
+        isFadingIn = false;
+        isFadingOut = true;
+    }
+    private void Update()
+    {
+        if(isFadingIn)
+        {
+            Color color = textBoxArea.GetComponentInChildren<Image>().color;
+            Color textColor = skillTextBoxes[0].color;
+            if (color.a + fadeInSpeed >= maxAlpha)
+            {
+                color.a = maxAlpha;
+                textColor.a = 1.0f;
+                isFadingIn = false;
+            }
+            else
+            {
+                color.a += fadeInSpeed;
+                textColor.a += textFadeInSpeed;
+            }
+            textBoxArea.GetComponentInChildren<Image>().color = color;
+            for(int i = 0; i < skillTextBoxes.Length; i++)
+            {
+                skillTextBoxes[i].color = textColor;
+            }
+        }
+        if (isFadingOut)
+        {
+            Color color = textBoxArea.GetComponentInChildren<Image>().color;
+            Color textColor = skillTextBoxes[0].color;
+            if (color.a - fadeOutSpeed <= 0.0f)
+            {
+                color.a = 0.0f;
+                textColor.a = 0.0f;
+                isFadingOut = false;
+            }
+            else
+            {
+                color.a -= fadeOutSpeed;
+                textColor.a -= textFadeOutSpeed;
+            }
+            textBoxArea.GetComponentInChildren<Image>().color = color;
+            for (int i = 0; i < skillTextBoxes.Length; i++)
+            {
+                skillTextBoxes[i].color = textColor;
+            }
+        }
     }
 }
